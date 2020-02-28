@@ -94,8 +94,7 @@
             "mgtNicName": "[concat('if-', parameters('vsrx-name'), '-mgmt')]"
         },
         "vnet-id": "[resourceId('Microsoft.Network/virtualNetworks', variables('vnet-name'))]",
-        "vnet-mgt-subnet-id": "[concat(variables('vnet-id'),'/subnets/', variables('vnet-mgt-subnet-name'))]",
-        "vsrx-pip-fxp0-id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('vsrxVM').pipNameFxp0)]",
+        "vnet-mgt-subnet-id": "[concat(variables('vnet-id'),'/subnets/', variables('vnet-mgt-subnet-name'))]"
         "plan-byol": {
             "name": "vsrx-byol-azure-image",
             "publisher": "juniper-networks",
@@ -156,8 +155,7 @@
             "name": "[variables('vsrxVM').mgtNicName]",
             "location": "[resourceGroup().location]",
             "dependsOn": [
-                "[concat('Microsoft.Network/virtualNetworks/', variables('vnet-name'))]",
-                "[concat('Microsoft.Network/publicIPAddresses/', variables('vsrxVM').pipNameFxp0)]"
+                "[concat('Microsoft.Network/virtualNetworks/', variables('vnet-name'))]"
             ],
             "properties": {
                 "ipConfigurations": [
