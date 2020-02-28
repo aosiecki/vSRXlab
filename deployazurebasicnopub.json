@@ -94,7 +94,7 @@
             "mgtNicName": "[concat('if-', parameters('vsrx-name'), '-mgmt')]"
         },
         "vnet-id": "[resourceId('Microsoft.Network/virtualNetworks', variables('vnet-name'))]",
-        "vnet-mgt-subnet-id": "[concat(variables('vnet-id'),'/subnets/', variables('vnet-mgt-subnet-name'))]"
+        "vnet-mgt-subnet-id": "[concat(variables('vnet-id'),'/subnets/', variables('vnet-mgt-subnet-name'))]",
         "plan-byol": {
             "name": "vsrx-byol-azure-image",
             "publisher": "juniper-networks",
