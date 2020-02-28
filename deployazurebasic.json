@@ -80,9 +80,9 @@
             },
             "defaultValue": "192.168.255.0/28"
         }
-	},
+    },
     "variables": {
-        "vsrx-addr-fxp0": "[concat(parameters('vsrx-name'), '-fxp0')]",
+        "vsrx-addr-fxp0": "[concat(parameters('vsrx-name'), '-mgmt')]",
         "vnet-name": "[parameters('vnet-name')]",
         "storageAccountName": "[concat(take(toLower(parameters('storageAccountName')), 11), uniqueString(resourceGroup().id, deployment().name))]",
         "storageContainerName": "vsrx",
@@ -91,7 +91,7 @@
             "vmSize": "[parameters('virtualMachineSize')]",
             "vmName": "[parameters('vsrx-name')]",
             "pipNameFxp0": "[variables('vsrx-addr-fxp0')]",
-            "mgtNicName": "[concat('if-', parameters('vsrx-name'), '-fxp0')]"
+            "mgtNicName": "[concat('if-', parameters('vsrx-name'), '-mgmt')]"
         },
         "vnet-id": "[resourceId('Microsoft.Network/virtualNetworks', variables('vnet-name'))]",
         "vnet-mgt-subnet-id": "[concat(variables('vnet-id'),'/subnets/', variables('vnet-mgt-subnet-name'))]",
@@ -195,7 +195,7 @@
             "location": "[resourceGroup().location]",
             "plan": "[if(equals(parameters('vSRX-model'), 'BYOL'), variables('plan-byol'), variables('plan-payg-b1'))]",
             "dependsOn": [
-                "[concat('Microsoft.Network/networkInterfaces/', variables('vsrxVM').mgtNicName)]",
+                "[concat('Microsoft.Network/networkInterfaces/', variables('vsrxVM').mgtNicName)]"
             ],
             "properties": {
                 "hardwareProfile": {
